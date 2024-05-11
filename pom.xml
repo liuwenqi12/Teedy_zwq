@@ -129,7 +129,7 @@
           <!-- printFailingErrors is pretty useful -->
           <printFailingErrors>true</printFailingErrors>
           <rulesets>
-            <ruleset>./ruleset.xml</ruleset>
+            <ruleset>ruleset.xml</ruleset>
           </rulesets>
         </configuration>
         <executions>
