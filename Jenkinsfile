@@ -8,12 +8,12 @@ pipeline {
     }
     stage('pmd') {
       steps {
-        bat 'mvn pmd:pmd'
+        bat 'mvn -U pmd:pmd'
       }
     }
     stage('doc') {
       steps {
-        bat 'mvn javadoc:jar'
+        bat 'mvn -U javadoc:jar'
       }
     }
     stage('test') {
