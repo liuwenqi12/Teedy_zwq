@@ -128,15 +128,15 @@
           <failOnViolation>false</failOnViolation>
           <!-- printFailingErrors is pretty useful -->
           <printFailingErrors>true</printFailingErrors>
-<!--           <rulesets>
+          <rulesets>
             <ruleset>./ruleset.xml</ruleset>
-          </rulesets> -->
+          </rulesets>
         </configuration>
         <executions>
           <execution>
-<!--             <goals>
+            <goals>
               <goal>check</goal>
-            </goals> -->
+            </goals>
           </execution>
         </executions>
       </plugin>
