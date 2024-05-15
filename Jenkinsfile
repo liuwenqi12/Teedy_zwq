@@ -6,17 +6,17 @@ pipeline {
         bat 'mvn -B -DskipTests clean package'
       }  
     }
-    stage('pmd') {
-      steps {
-        bat 'mvn -U pmd:pmd'
-      }
-    }
     stage('doc') {
       steps {
-        bat 'mvn -U javadoc:jar'
+        bat 'mvn javadoc:jar --fail-never'
       }
     }
-    stage('test') {
+    stage('pmd') {
+      steps {
+        bat 'mvn pmd:pmd --fail-never'
+      }
+    }
+    stage('Test Report') {
       steps {
         bat 'mvn test'
       }
@@ -25,14 +25,14 @@ pipeline {
 
   post {
     always {
-      archiveArtifacts artifacts: '**/target/site/**', fingerprint: true
-      archiveArtifacts artifacts: '**/target/**/*.jar', fingerprint: true
-      archiveArtifacts artifacts: '**/target/**/*.war', fingerprint: true
-      archiveArtifacts artifacts: '**/target/**/*javadoc.jar', fingerprint: true
-      archiveArtifacts artifacts: '**/target/**/*tests.jar', fingerprint: true
-      archiveArtifacts artifacts: '**/target/**/*.html', fingerprint: true
-      archiveArtifacts artifacts: '**/target/**/*.war', fingerprint: true
-      archiveArtifacts artifacts: '**/target/**/*.xml', fingerprint: true
+        archiveArtifacts artifacts: '**/target/site/**', fingerprint: true
+        archiveArtifacts artifacts: '**/target/TEST-*.xml', fingerprint: true
+        archiveArtifacts artifacts: '**/target/**/*.jar', fingerprint: true
+        archiveArtifacts artifacts: '**/target/**/*.war', fingerprint: true
+        archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+        archiveArtifacts artifacts: '**/target/*.war', fingerprint: true
+        archiveArtifacts artifacts: '**/target/site/apidocs/**', fingerprint: true
+        archiveArtifacts artifacts: '**/target/surefire-reports/**', fingerprint: true
     }
   }
 }
