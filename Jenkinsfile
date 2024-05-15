@@ -8,7 +8,7 @@ pipeline {
     }
     stage('doc') {
       steps {
-        bat 'mvn javadoc:jar --fail-never'
+        bat 'mvn javadoc:jar -Dmaven.javadoc.failOnError=false'
       }
     }
     stage('pmd') {
