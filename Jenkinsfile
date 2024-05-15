@@ -8,7 +8,7 @@ pipeline {
     }
     stage('doc') {
       steps {
-        bat 'mvn javadoc:jar -Dmaven.javadoc.failOnError=false'
+        bat 'mvn javadoc:jar --fail-never'
       }
     }
     stage('pmd') {
@@ -18,7 +18,7 @@ pipeline {
     }
     stage('Test Report') {
       steps {
-        bat 'mvn clean -DskipTests install'
+        bat 'mvn test --fail-never'
       }
     }
   }
